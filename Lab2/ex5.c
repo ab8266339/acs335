@@ -1,0 +1,40 @@
+#include "stm32f4xx.h"
+
+
+
+
+int main(void){
+	RCC->AHB1ENR |=RCC_AHB1ENR_GPIODEN;
+	RCC->AHB1ENR |=RCC_AHB1ENR_GPIOAEN;
+	GPIOA->MODER |= 0x0000; // GPIOA pin 0 USER PUSHBUTTON
+	GPIOD->MODER |= GPIO_MODER_MODER12_0; //GPIOD pin 12 Green LED
+	GPIOD->MODER |= GPIO_MODER_MODER14_0;
+	RCC-> APB1ENR |=RCC_APB1ENR_TIM2EN;
+	TIM2->CR1 = TIM2->CR1 & ~0x00000016;
+	TIM2->CR1  = 1<<3;
+	TIM2->PSC = 8400-1;
+	TIM2->ARR =923;
+	TIM2->EGR = 1;
+	TIM2->CR1 = 1<<0;
+	
+	for(;;){
+
+	
+		if ((GPIOA->IDR & 0x0001)==0){
+		GPIOD->BSRR =1<<(12+16);
+		GPIOD->BSRR =1<<14;
+		while(((TIM2->SR&0x0001)!=1)&((GPIOA->IDR & 0x0001)==0)){}; 
+		TIM2->SR  &= ~TIM_SR_UIF;
+		GPIOD->BSRR =1<<(14+16);
+		while(((TIM2->SR&0x0001)!=1)&((GPIOA->IDR & 0x0001)==0)){};
+		TIM2->SR  &= ~TIM_SR_UIF;	
+	}
+	else if ((GPIOA->IDR & 0x0001)==1){
+		
+		GPIOD ->BSRR =1<<12;
+		GPIOD ->BSRR =1<<(14+16);
+	}
+	
+		
+}
+}

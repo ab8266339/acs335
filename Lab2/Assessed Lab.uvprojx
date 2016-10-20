@@ -371,7 +371,7 @@
             <vShortWch>0</vShortWch>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_HAL_VALUES</Define>
+              <Define>USE_HAL_DRIVER</Define>
               <Undefine></Undefine>
               <IncludePath>..\Lab2</IncludePath>
             </VariousControls>
@@ -521,7 +521,7 @@
           <targetInfo name="Target 1"/>
         </targetInfos>
       </file>
-      <file attr="config" category="header" name="MDK\Templates\Inc\stm32f4xx_hal_conf.h">
+      <file attr="config" category="header" name="MDK\Templates\Inc\stm32f4xx_hal_conf.h" version="1.4.0">
         <instance index="0">RTE\Device\STM32F407VGTx\stm32f4xx_hal_conf.h</instance>
         <component Cclass="Device" Cgroup="STM32Cube Framework" Csub="Classic" Cvendor="Keil" Cversion="1.4.0" condition="STM32F4 Framework Classic"/>
         <package name="STM32F4xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.6.0"/>
