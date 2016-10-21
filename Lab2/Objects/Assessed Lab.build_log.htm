@@ -3,116 +3,138 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.17.0.0
+IDE-Version: µVision V5.15
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: CiCS, University, LIC=----
+License Information: Hao Xu, University of Sheffield, LIC=----
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.17
-Toolchain Path:  C:\KEIL_V5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.06 update 1 (build 61)
-Assembler:       Armasm.exe V5.06 update 1 (build 61)
-Linker/Locator:  ArmLink.exe V5.06 update 1 (build 61)
-Library Manager: ArmAr.exe V5.06 update 1 (build 61)
-Hex Converter:   FromElf.exe V5.06 update 1 (build 61)
-CPU DLL:         SARMCM3.DLL V5.17
-Dialog DLL:      DCM.DLL V1.13.4.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
-Dialog DLL:      TCM.DLL V1.14.6.0
+Toolchain:       MDK-Lite  Version: 5.15.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 2 (build 169)
+Assembler:       Armasm.exe V5.05 update 2 (build 169)
+Linker/Locator:  ArmLink.exe V5.05 update 2 (build 169)
+Library Manager: ArmAr.exe V5.05 update 2 (build 169)
+Hex Converter:   FromElf.exe V5.05 update 2 (build 169)
+CPU DLL:         SARMCM3.DLL V5.15.0
+Dialog DLL:      DCM.DLL V1.13.2.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.15.0_KEIL
+Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
-U:\ACS335\Lab2\Assessed Lab.uvprojx
-Project File Date:  10/19/2016
+C:\Users\hao\Documents\GitHub\acs335\Lab2\Assessed Lab.uvprojx
+Project File Date:  10/21/2016
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\KEIL_V5\ARM\ARMCC\Bin'
+*** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling main.c...
-main.c(63): warning:  #1-D: last line of file ends without a newline
-  //}
+main.c(157): warning:  #1-D: last line of file ends without a newline
+  }
 main.c: 1 warning, 0 errors
-linking...
-Program Size: Code=536 RO-data=408 RW-data=0 ZI-data=1632  
-".\Objects\Assessed Lab.axf" - 0 Error(s), 1 Warning(s).
+compiling stm32f4xx_hal.c...
+compiling stm32f4xx_hal_cortex.c...
+compiling stm32f4xx_hal_dma.c...
+compiling stm32f4xx_hal_dma_ex.c...
+compiling stm32f4xx_hal_gpio.c...
+compiling stm32f4xx_hal_pwr.c...
+compiling stm32f4xx_hal_pwr_ex.c...
+compiling stm32f4xx_hal_rcc.c...
+C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c(437): error:  #20: identifier "LSE_STARTUP_TIMEOUT" is undefined
+          if((HAL_GetTick() - tickstart ) > 
+CC_LSE_TIMEOUT_VALUE)
+C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c(451): error:  #20: identifier "LSE_STARTUP_TIMEOUT" is undefined
+          if((HAL_GetTick() - tickstart ) > 
+CC_LSE_TIMEOUT_VALUE)
+C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c: 0 warnings, 2 errors
+compiling stm32f4xx_hal_rcc_ex.c...
+C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c(1983): error:  #20: identifier "LSE_STARTUP_TIMEOUT" is undefined
+            if((HAL_GetTick() - tickstart ) > 
+CC_LSE_TIMEOUT_VALUE)
+C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c: 0 warnings, 1 error
+compiling stm32f4xx_hal_tim.c...
+compiling stm32f4xx_hal_tim_ex.c...
+assembling startup_stm32f407xx.s...
+compiling system_stm32f4xx.c...
+".\Objects\Assessed Lab.axf" - 3 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
-                ARM::CMSIS:CORE:4.3.0
+                http://www.keil.com/pack/ARM.CMSIS.4.3.0.pack
+                ARM::CMSIS:CORE:4.1.0
                 CMSIS (Cortex Microcontroller Software Interface Standard)
-   * Component: CORE Version: 4.3.0
+   * Component: CORE Version: 4.1.0
 
 Package Vendor: Keil
-                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.6.0.pack
-                ::Device:STM32Cube Framework (API)
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.10.0.pack
+                Keil::Device:STM32Cube Framework:Classic:1.5.0
                 STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
-   * Component: STM32Cube Framework Version: 
-   * Component: Startup Version: 2.4.0
-   * Component: Classic Version: 1.4.0
-   * Component: Common Version: 1.4.0
-   * Component: Cortex Version: 1.4.0
-   * Component: DMA Version: 1.4.0
-   * Component: GPIO Version: 1.4.0
-   * Component: PWR Version: 1.4.0
-   * Component: RCC Version: 1.4.0
-   * Component: TIM Version: 1.4.0
+   * Component: Classic Version: 1.5.0
+   * Component: Common Version: 1.5.0
+   * Component: Cortex Version: 1.5.0
+   * Component: DMA Version: 1.5.0
+   * Component: Startup Version: 2.5.0
+   * Component: STM32Cube Framework Version: 1.0.0
+   * Component: GPIO Version: 1.5.0
+   * Component: RCC Version: 1.5.0
+   * Component: PWR Version: 1.5.0
+   * Component: TIM Version: 1.5.0
 
 <h2>Collection of Component include folders:</h2>
-  U:\ACS335\Lab2\RTE
-  U:\ACS335\Lab2\RTE\Device\STM32F407VGTx
-  C:\KEIL_V5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
-  C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.6.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
-  C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.6.0\Drivers\STM32F4xx_HAL_Driver\Inc
+  C:\Users\hao\Documents\GitHub\acs335\Lab2\RTE
+  C:\Users\hao\Documents\GitHub\acs335\Lab2\RTE\Device\STM32F407VGTx
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.10.0\Drivers\STM32F4xx_HAL_Driver\Inc
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:4.3.0
+   * Component: ARM::CMSIS:CORE:4.1.0
 
-   * Component: ::Device:STM32Cube Framework (API)
+   * Component: Keil::Device:STM32Cube Framework:Classic:1.5.0
+      Include file:  MDK\Templates\Inc\stm32f4xx_it.h
+      Source file:   MDK\Templates\Src\main.c
+      Include file:  MDK\Templates\Inc\stm32f4xx_hal_conf.h
+      Source file:   MDK\Templates\Src\stm32f4xx_hal_msp.c
+      Source file:   MDK\Templates\Src\stm32f4xx_it.c
+      Include file:  MDK\Templates\Inc\main.h
+      Include file:  CMSIS\Driver\Config\RTE_Device.h
 
-   * Component: Keil::Device:Startup:2.4.0
+   * Component: Keil::Device:STM32Cube HAL:Common:1.5.0
+      Include file:  Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c
+
+   * Component: Keil::Device:STM32Cube HAL:Cortex:1.5.0
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c
+
+   * Component: Keil::Device:STM32Cube HAL:DMA:1.5.0
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.c
+
+   * Component: Keil::Device:Startup:2.5.0
       Source file:   MDK\Device\Source\ARM\STM32F40xxx_41xxx_OPT.s
       Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
       Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f407xx.s
-      Source file:   MDK\Device\Source\ARM\system_stm32f4xx.c
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
 
-   * Component: Keil::Device:STM32Cube Framework:Classic:1.4.0
-      Include file:  CMSIS\Driver\Config\RTE_Device.h
-      Include file:  MDK\Templates\Inc\stm32f4xx_hal_conf.h
-      Source file:   MDK\Templates\Src\stm32f4xx_hal_msp.c
-      Include file:  MDK\Templates\Inc\stm32f4xx_it.h
-      Source file:   MDK\Templates\Src\stm32f4xx_it.c
-      Include file:  MDK\Templates\Inc\main.h
-      Source file:   MDK\Templates\Src\main.c
+   * Component: ::Device:STM32Cube Framework:1.0.0 (API)
 
-   * Component: Keil::Device:STM32Cube HAL:Common:1.4.0
-      Include file:  Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c
-
-   * Component: Keil::Device:STM32Cube HAL:Cortex:1.4.0
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.c
-
-   * Component: Keil::Device:STM32Cube HAL:DMA:1.4.0
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.c
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.c
-
-   * Component: Keil::Device:STM32Cube HAL:GPIO:1.4.0
+   * Component: Keil::Device:STM32Cube HAL:GPIO:1.5.0
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c
 
-   * Component: Keil::Device:STM32Cube HAL:PWR:1.4.0
+   * Component: Keil::Device:STM32Cube HAL:RCC:1.5.0
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c
+
+   * Component: Keil::Device:STM32Cube HAL:PWR:1.5.0
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c
 
-   * Component: Keil::Device:STM32Cube HAL:RCC:1.4.0
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.c
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.c
-
-   * Component: Keil::Device:STM32Cube HAL:TIM:1.4.0
+   * Component: Keil::Device:STM32Cube HAL:TIM:1.5.0
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c
-Build Time Elapsed:  00:00:02
+Target not created.
 </pre>
 </body>
 </html>
