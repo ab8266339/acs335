@@ -6,7 +6,9 @@ SPI_HandleTypeDef SPI_Params; // Declares the structure handle for the parameter
 GPIO_InitTypeDef GPIOA_Params; // Declares the structure handle for the parameters of GPIOA
 GPIO_InitTypeDef GPIOE_Params; // Declares the structure handle for the parameters of GPIOE
 GPIO_InitTypeDef GPIOE_Params_I; // Declares the structure handle for the parameters of the interrupt pin on GPIOE
-
+//uint16_t Z_Reg; //Declares the variable to store the z-axis MS 16-bits in
+uint16_t X_Reg; //Declares the variable to store the x-axis MS 16-bits in
+uint16_t Y_Reg; //Declares the variable to store the y-axis MS 16-bits in
 uint8_t data_to_send[1]; //Declares an array to store the required LIS3DSH
 //register address in. It has a single element since we will only be
 //accessing a single address in each SPI transaction.
@@ -61,31 +63,100 @@ GPIOE_Params_I.Speed = GPIO_SPEED_FAST; //Selects fast speed
 HAL_GPIO_Init(GPIOE, &GPIOE_Params_I); // Sets GPIOE into the modes specified in GPIOE_Params_I
 __HAL_SPI_ENABLE(&SPI_Params); //Enable the SPI
 
-// Initialize GPIO Port for LEDs
+// Initialize GPIO Port for LEDs and buttons
 RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN; // Enable Port D clock
+RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;		//Enable GPIOA ports
 GPIOD->MODER |= GPIO_MODER_MODER14_0; // Port D.14 output - red LED
 GPIOD->MODER |= GPIO_MODER_MODER12_0; // Port D.12 output - green LED
 GPIOD->MODER |= GPIO_MODER_MODER15_0; // Port D.15 output - blue LED
 GPIOD->MODER |= GPIO_MODER_MODER13_0; // Port D.13 output - orange
-
-data_to_send[0] = 0x00|0x20; // Address for CTRL_REG4 register of LIS3DSH and fisrt bit been set to write
-GPIOE->BSRR |= GPIO_PIN_3<<16; // Set the SPI communication enable line low to initiate communication(I copied!)
+GPIOA->MODER |= 0; // GPIOA pin 0 USER PUSHBUTTON
+	
+	
+	
+data_to_send[0] = 0x00|0x20; // Address for Control_REG_4 register on LIS3DSH
+GPIOE->BSRR |= GPIO_PIN_3<<16; // Set the SPI communication enable line low to initiate communication
 HAL_SPI_Transmit(&SPI_Params,data_to_send,data_size,data_timeout); // Send the address of the register to be read on the LIS3DSH
-data_to_send[0] =0x00;// Set a blank address because we are waiting to receive data
-HAL_SPI_Receive(&SPI_Params,data_to_send,data_size,data_timeout); // Get the data from the LIS3DSH through the SPI channel
-data_to_send[0]=0x14; //Sent value 00010100 in Hex form to address 0x20.
-HAL_SPI_Transmit(&SPI_Params,data_to_send,data_size,data_timeout); // Send the address of the register to be read on the LIS3DSH
+data_to_send[0]=0x13;
+HAL_SPI_Transmit(&SPI_Params,data_to_send,data_size,data_timeout);
 GPIOE->BSRR |= GPIO_PIN_3; // Set the SPI communication enable line high to signal the end of the communication process
 
-CTRL_REG4 = *SPI_Params.pRxBuffPtr; //Write tem value into CTRL_REG4 register variable
 
-if (CTRL_REG4 == 0x14){ //to exam the value in that variable is 0x14
-	GPIOD->BSRR |= (1<<12);		//turn green led on if it matches
-}
+
+
+// Write a new value to control register 3 of the LIS3DSH to configure the interrupts
+data_to_send[0] = 0x23; // Address for control register 3 on the LIS3DSH
+GPIOE->BSRR = GPIO_PIN_3<<16; // Set the SPI communication enable line low to initiate communication
+HAL_SPI_Transmit(&SPI_Params,data_to_send,data_size,data_timeout); // Send the address of the register to be read on the LIS3DSH
+data_to_send[0] = 0xC8; // Enable DRDY connected to Int1, sets Int1 active to high, enables int1
+HAL_SPI_Transmit(&SPI_Params,data_to_send,data_size,data_timeout); // Send the new register value to the LIS3DSH through the SPI channel
+GPIOE->BSRR = GPIO_PIN_3; // Set the SPI communication enable line high to signal the end of the communication process
+//GPIOD->BSRR |= (1<<13); // Turns on the orange LED
+
+for(;;){ //the loop keeps everything repeat
+if ((GPIOA->IDR & 0x0001)!=1){  			//when the button was not pressed
+if (__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_0)==SET){ // If interupt us avoked, start this
+__HAL_GPIO_EXTI_CLEAR_IT(GPIO_PIN_0); // Clears the interrupt flag before proceeding to service the interrupt for next time use
+
+// Get the value from the MSB X-axis and Y-axis data register of the LIS3DSH
+data_to_send[0] = 0x80|0x29; // Address for X out on LIS3DSH
+GPIOE->BSRR = GPIO_PIN_3<<16; // Set the SPI communication enable line low to initiate communication 
+HAL_SPI_Transmit(&SPI_Params,data_to_send,data_size,data_timeout); // Send the address of the register to be read on the LIS3DSH
+data_to_send[0] = 0x00; // Set a blank address because we are waiting to receive data
+HAL_SPI_Receive(&SPI_Params,data_to_send,data_size,data_timeout);// Get the data from the LIS3DSH through the SPI channel
+GPIOE->BSRR = GPIO_PIN_3;// Set the SPI communication enable line high to signal the end of the communication process
+X_Reg = *SPI_Params.pRxBuffPtr; // Read the data from the SPI buffer sub-structure into our internal variable.
+
 	
-else{		
-	GPIOD->BSRR |=(1<<14);	//else it will be red
+data_to_send[0] = 0x80|0x2B; // Address for Y OUT on LIS3DSH
+GPIOE->BSRR = GPIO_PIN_3<<16; // Set the SPI communication enable line low to initiate communication 
+HAL_SPI_Transmit(&SPI_Params,data_to_send,data_size,data_timeout); // Send the address of the register to be read on the LIS3DSH
+data_to_send[0] = 0x00; // Set a blank address because we are waiting to receive data
+HAL_SPI_Receive(&SPI_Params,data_to_send,data_size,data_timeout);// Get the data from the LIS3DSH through the SPI channel
+GPIOE->BSRR = GPIO_PIN_3;// Set the SPI communication enable line high to signal the end of the communication process
+Y_Reg = *SPI_Params.pRxBuffPtr; // Read the data from the SPI buffer sub-structure into our internal variable.
+
+
+if((Y_Reg&0x80) == 0x80){ // Check to see if the received value is positive or negative - the acceleration is a signed 16-bit number so the MSB is the sign bit - 1 is negative, 0 is positive. 
+GPIOD->BSRR = (1<<15); // If the receive value is negative turn on the blue LED
+GPIOD->BSRR = (1<<(13+16)); // If the receive value is negative turn off the orange LED
+}
+else if((Y_Reg) == 0x00){ //Check to see if the received value is 0, 
+GPIOD->BSRR = (1<<(13+16)); // turn off led
+GPIOD->BSRR = (1<<(15+16)); // turn off led
+}
+else{
+GPIOD->BSRR = (1<<13); // If the received value is another case turn on the orange LED
+GPIOD->BSRR = (1<<(15+16)); // If the received value is another case turn off the blue LED
+}
+
+if((X_Reg) == 0x00){ //if X value is 0
+GPIOD->BSRR = (1<<(14+16)); // turn ff the red LED
+GPIOD->BSRR = (1<<(12+16)); //  turn off the green LED
+}
+
+else if((X_Reg&0x80) != 0x80){ //determine the value is a positive value
+GPIOD->BSRR = (1<<14); // If the received value is positive turn on the red LED
+GPIOD->BSRR = (1<<(12+16)); // If the received value is positive turn off the green LED
+}
+
+else if((X_Reg&0x80) == 0x80){ //determine the value is a negative value
+GPIOD->BSRR = (1<<12); // If the received value is positive turn on the green LED
+GPIOD->BSRR = (1<<(14+16)); // If the received value is positive turn off the red LED
+}
+
+else{
+	
+	//to let initial value cases stay here
+	}
+
+}
+
 }
 
 
+else{
+// Just to let else status of code be kept here, in case of unpredicted changes. 
+} 
+}
 }

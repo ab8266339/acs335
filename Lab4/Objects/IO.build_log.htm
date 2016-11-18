@@ -28,12 +28,24 @@ Project File Date:  11/17/2016
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\KEIL_V5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling main.c...
-main.c(91): warning:  #1-D: last line of file ends without a newline
-  }
-main.c: 1 warning, 0 errors
+main.c(126): warning:  #61-D: integer operation result is out of range
+  
+PIOD->BSRR = (1<<(15+16)); // turn off led
+main.c(126): warning:  #68-D: integer conversion resulted in a change of sign
+  
+PIOD->BSRR = (1<<(15+16)); // turn off led
+main.c(130): warning:  #61-D: integer operation result is out of range
+  
+PIOD->BSRR = (1<<(15+16)); // If the received value is another case turn off the blue LED
+main.c(130): warning:  #68-D: integer conversion resulted in a change of sign
+  
+PIOD->BSRR = (1<<(15+16)); // If the received value is another case turn off the blue LED
+main.c(20): warning:  #177-D: variable "CTRL_REG4" was declared but never referenced
+  uint8_t CTRL_REG4; //Declares the variable to store the who_am_I register value in
+main.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=3904 RO-data=424 RW-data=4 ZI-data=1636  
-".\Objects\IO.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=4168 RO-data=424 RW-data=4 ZI-data=1636  
+".\Objects\IO.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
