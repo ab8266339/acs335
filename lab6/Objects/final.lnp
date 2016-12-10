@@ -1,0 +1,25 @@
+--cpu Cortex-M4.fp
+".\objects\main.o"
+".\objects\my_headers.o"
+".\objects\thread.o"
+".\objects\buttons_f429discovery.o"
+".\objects\led_f429discovery.o"
+"C:\KEIL_V5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib"
+".\objects\rtx_conf_cm.o"
+".\objects\stm32f4xx_hal.o"
+".\objects\stm32f4xx_hal_cortex.o"
+".\objects\stm32f4xx_hal_dma.o"
+".\objects\stm32f4xx_hal_dma_ex.o"
+".\objects\stm32f4xx_hal_gpio.o"
+".\objects\stm32f4xx_hal_pwr.o"
+".\objects\stm32f4xx_hal_pwr_ex.o"
+".\objects\stm32f4xx_hal_rcc.o"
+".\objects\stm32f4xx_hal_rcc_ex.o"
+".\objects\stm32f4xx_hal_spi.o"
+".\objects\stm32f4xx_hal_tim.o"
+".\objects\stm32f4xx_hal_tim_ex.o"
+".\objects\startup_stm32f407xx.o"
+".\objects\system_stm32f4xx.o"
+--ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\final.map" -o .\Objects\final.axf

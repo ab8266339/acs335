@@ -883,12 +883,14 @@ ARM Macro Assembler    Page 14
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\objects\startup_stm32f407xx.d -o.\objects\startup_stm32f407xx
 .o -IU:\git-repos\acs335\Lab6-final\RTE -IU:\git-repos\acs335\Lab6-final\RTE\De
-vice\STM32F407VGTx -IC:\KEIL_V5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include -IC:\KEI
-L_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.6.0\Drivers\CMSIS\Device\ST\STM32F4xx\Includ
-e -IC:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.6.0\Drivers\STM32F4xx_HAL_Driver\I
-nc --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 517" --prede
-fine="_RTE_ SETA 1" --predefine="STM32F407xx SETA 1" --list=.\listings\startup_
-stm32f407xx.lst RTE\Device\STM32F407VGTx\startup_stm32f407xx.s
+vice\STM32F407VGTx -IC:\KEIL_V5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Driver\Include -
+IC:\KEIL_V5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include -IC:\KEIL_V5\ARM\PACK\ARM\CM
+SIS\4.5.0\CMSIS\RTOS\RTX\INC -IC:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.6.0\Dri
+vers\CMSIS\Device\ST\STM32F4xx\Include -IC:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP
+\2.6.0\Drivers\STM32F4xx_HAL_Driver\Inc --predefine="__RTX SETA 1" --predefine=
+"__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 517" --predefine="_RTE_ SET
+A 1" --predefine="STM32F407xx SETA 1" --list=.\listings\startup_stm32f407xx.lst
+ RTE\Device\STM32F407VGTx\startup_stm32f407xx.s
 
 
 
@@ -1992,4 +1994,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 3 symbols
-449 symbols in table
+450 symbols in table

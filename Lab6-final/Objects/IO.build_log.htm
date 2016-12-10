@@ -22,38 +22,41 @@ Dialog DLL:      TCM.DLL V1.14.6.0
  
 <h2>Project:</h2>
 U:\git-repos\acs335\Lab6-final\IO.uvprojx
-Project File Date:  11/17/2016
+Project File Date:  12/09/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\KEIL_V5\ARM\ARMCC\Bin'
 Build target 'Target 1'
+compiling SPI_STM32F4xx.c...
+C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.6.0\CMSIS\Driver\SPI_STM32F4xx.h(56): error:  #35: #error directive: "SPI not configured in RTE_Device.h!"
+      #error "SPI not configured in RTE_Device.h!"
+C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.6.0\CMSIS\Driver\SPI_STM32F4xx.c: 0 warnings, 1 error
 compiling main.c...
-main.c(101): warning:  #61-D: integer operation result is out of range
-  	
-PIOD->BSRR = (1<< (15+16));
-main.c(101): warning:  #68-D: integer conversion resulted in a change of sign
-  	
-PIOD->BSRR = (1<< (15+16));
-main.c(116): warning:  #1-D: last line of file ends without a newline
-  }
-main.c(10): warning:  #177-D: variable "X_Reg" was declared but never referenced
-  uint16_t X_Reg; //Declares the variable to store the x-axis MS 16-bits in
-main.c(11): warning:  #177-D: variable "Y_Reg" was declared but never referenced
-  uint16_t Y_Reg; //Declares the variable to store the y-axis MS 16-bits in
-main.c(20): warning:  #177-D: variable "CTRL_REG4" was declared but never referenced
-  uint8_t CTRL_REG4; //Declares the variable to store the who_am_I register value in
-main.c: 6 warnings, 0 errors
-linking...
-Program Size: Code=2544 RO-data=424 RW-data=4 ZI-data=1636  
-".\Objects\IO.axf" - 0 Error(s), 6 Warning(s).
+my_headers.h(3): warning:  #1-D: last line of file ends without a newline
+  //void Blink_LED(uint8_t); // Declaration for the function to blink the LED
+Thread.h(2): warning:  #1-D: last line of file ends without a newline
+  void Blink_LED_Thread (void const *argument); // Standard format to declare the main thread function.
+main.c(20): warning:  #223-D: function "Initialise_LED" declared implicitly
+  	Initialise_LED();
+main.c: 3 warnings, 0 errors
+compiling Thread.c...
+my_headers.h(3): warning:  #1-D: last line of file ends without a newline
+  //void Blink_LED(uint8_t); // Declaration for the function to blink the LED
+Thread.c(27): warning:  #223-D: function "Blink_LED" declared implicitly
+      Blink_LED(LED_on);
+Thread.c: 2 warnings, 0 errors
+".\Objects\IO.axf" - 1 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
                 http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
-                ARM::CMSIS:CORE:4.3.0
+                ::CMSIS:RTOS:1.0 (API)
                 CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: RTOS Version: 1.0
+   * Component: SPI Version: 2.01
    * Component: CORE Version: 4.3.0
+   * Component: Keil RTX Version: 4.80.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.6.0.pack
@@ -70,17 +73,40 @@ Package Vendor: Keil
    * Component: RCC Version: 1.4.0
    * Component: SPI Version: 1.4.0
    * Component: TIM Version: 1.4.0
+   * Component: SPI Version: 2.7
 
 <h2>Collection of Component include folders:</h2>
   U:\git-repos\acs335\Lab6-final\RTE
   U:\git-repos\acs335\Lab6-final\RTE\Device\STM32F407VGTx
+  C:\KEIL_V5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Driver\Include
   C:\KEIL_V5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+  C:\KEIL_V5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC
   C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.6.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
   C:\KEIL_V5\ARM\PACK\Keil\STM32F4xx_DFP\2.6.0\Drivers\STM32F4xx_HAL_Driver\Inc
 
 <h2>Collection of Component Files used:</h2>
 
+   * Component: ::CMSIS:RTOS:1.0 (API)
+
+   * Component: ::CMSIS Driver:SPI:2.01 (API)
+      Include file:  CMSIS\Driver\Include\Driver_SPI.h
+
    * Component: ARM::CMSIS:CORE:4.3.0
+
+   * Component: ARM::CMSIS:RTOS:Keil RTX:4.80.0
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
 
    * Component: ::Device:STM32Cube Framework (API)
 
@@ -128,7 +154,11 @@ Package Vendor: Keil
    * Component: Keil::Device:STM32Cube HAL:TIM:1.4.0
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c
-Build Time Elapsed:  00:00:06
+
+   * Component: Keil::CMSIS Driver:SPI:2.7
+      Source file:   CMSIS\Driver\SPI_STM32F4xx.c
+Target not created.
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
