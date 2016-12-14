@@ -14,7 +14,7 @@
 int main (void) {
   osKernelInitialize ();                    // initialize CMSIS-RTOS
 Initialise_LED_and_button();
-	Init_Blink_LED_Thread();
+Init_Blink_LED_Thread();
 Init_Button_Thread();
   // initialize peripherals here
 

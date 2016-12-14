@@ -22,30 +22,32 @@ Dialog DLL:      TCM.DLL V1.14.6.0
  
 <h2>Project:</h2>
 U:\git-repos\acs335\Lab4\IO.uvprojx
-Project File Date:  11/17/2016
+Project File Date:  12/12/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\KEIL_V5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling main.c...
-main.c(126): warning:  #61-D: integer operation result is out of range
-  
-PIOD->BSRR = (1<<(15+16)); // turn off led
-main.c(126): warning:  #68-D: integer conversion resulted in a change of sign
-  
-PIOD->BSRR = (1<<(15+16)); // turn off led
-main.c(130): warning:  #61-D: integer operation result is out of range
-  
-PIOD->BSRR = (1<<(15+16)); // If the received value is another case turn off the blue LED
-main.c(130): warning:  #68-D: integer conversion resulted in a change of sign
-  
-PIOD->BSRR = (1<<(15+16)); // If the received value is another case turn off the blue LED
-main.c(20): warning:  #177-D: variable "CTRL_REG4" was declared but never referenced
-  uint8_t CTRL_REG4; //Declares the variable to store the who_am_I register value in
-main.c: 5 warnings, 0 errors
-linking...
-Program Size: Code=4168 RO-data=424 RW-data=4 ZI-data=1636  
-".\Objects\IO.axf" - 0 Error(s), 5 Warning(s).
+main.c(164): error:  #29: expected an expression
+  				if((Y_Accn > 600||Y_Accn < -600||Z_Accn < -200)||(Z_Accn > 200))){
+main.c(167): warning:  #12-D: parsing restarts here after previous syntax error
+  				else GPIOD ->BSRR = 1<<28;
+main.c(167): error:  #65: expected a ";"
+  				else GPIOD ->BSRR = 1<<28;
+main.c(170): warning:  #1-D: last line of file ends without a newline
+  }
+main.c(6): warning:  #177-D: variable "LED_on" was declared but never referenced
+  	uint8_t LED_on = 1; // Defines parameter for LED on
+main.c(7): warning:  #177-D: variable "LED_off" was declared but never referenced
+  uint8_t LED_off = 0; // Defines parameter for LED off
+main.c(21): warning:  #550-D: variable "X_Accn" was set but never used
+  	int16_t X_Accn;  //Declare the variable to store the x-axis accelerationin - 16 bit number
+main.c(25): warning:  #177-D: variable "ii" was declared but never referenced
+  	uint16_t ii;     //Declare a variable to implement switch bounce
+main.c(26): warning:  #177-D: variable "i" was declared but never referenced
+  		uint32_t i;
+main.c: 7 warnings, 2 errors
+".\Objects\IO.axf" - 2 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -66,6 +68,8 @@ Package Vendor: Keil
    * Component: Cortex Version: 1.4.0
    * Component: DMA Version: 1.4.0
    * Component: GPIO Version: 1.4.0
+   * Component: I2C Version: 1.4.0
+   * Component: I2S Version: 1.4.0
    * Component: PWR Version: 1.4.0
    * Component: RCC Version: 1.4.0
    * Component: SPI Version: 1.4.0
@@ -114,6 +118,13 @@ Package Vendor: Keil
    * Component: Keil::Device:STM32Cube HAL:GPIO:1.4.0
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.c
 
+   * Component: Keil::Device:STM32Cube HAL:I2C:1.4.0
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2c.c
+
+   * Component: Keil::Device:STM32Cube HAL:I2S:1.4.0
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2s.c
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_i2s_ex.c
+
    * Component: Keil::Device:STM32Cube HAL:PWR:1.4.0
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.c
@@ -128,7 +139,8 @@ Package Vendor: Keil
    * Component: Keil::Device:STM32Cube HAL:TIM:1.4.0
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c
-Build Time Elapsed:  00:00:03
+Target not created.
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

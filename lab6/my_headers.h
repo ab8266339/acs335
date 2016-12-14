@@ -8,3 +8,6 @@ void Red_LED(uint8_t); // Declaration for the function to blink the LED
 void Green_LED(uint8_t);
 void Blue_LED(uint8_t);
 void Orange_LED(uint8_t);
+void Second (uint8_t);
+void Light (uint8_t);
+//void Initialise_Acc(void);

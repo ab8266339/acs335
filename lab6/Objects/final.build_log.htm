@@ -22,20 +22,24 @@ Dialog DLL:      TCM.DLL V1.14.6.0
  
 <h2>Project:</h2>
 U:\git-repos\acs335\lab6\final.uvprojx
-Project File Date:  12/09/2016
+Project File Date:  12/10/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\KEIL_V5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling Thread.c...
-my_headers.h(10): warning:  #1-D: last line of file ends without a newline
-  void Orange_LED(uint8_t);
-Thread.c(38): warning:  #177-D: variable "LED_off" was declared but never referenced
-  uint8_t LED_off = 0; // Defines parameter for LED off
-Thread.c: 2 warnings, 0 errors
+compiling main.c...
+main.c(184): warning:  #1-D: last line of file ends without a newline
+  }}
+main.c(22): warning:  #550-D: variable "Y_Accn" was set but never used
+  	int16_t Y_Accn;  //Declare the variable to store the y-axis accelerationin - 16 bit number
+main.c(25): warning:  #550-D: variable "X_Accn" was set but never used
+  	int16_t X_Accn;  //Declare the variable to store the x-axis accelerationin - 16 bit number
+main.c(29): warning:  #177-D: variable "ii" was declared but never referenced
+  	uint16_t ii;     //Declare a variable to implement switch bounce
+main.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=7516 RO-data=544 RW-data=84 ZI-data=4756  
-".\Objects\final.axf" - 0 Error(s), 2 Warning(s).
+Program Size: Code=9624 RO-data=512 RW-data=80 ZI-data=4752  
+".\Objects\final.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
